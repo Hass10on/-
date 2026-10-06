@@ -1,0 +1,231 @@
+{
+  "events": [
+    { "id": "fixing_approach", "title": "عرض في موقف السيارات", "chance": 0.07,
+      "requires": { "minTier": 1, "flagsNone": ["fixing_seen"] },
+      "text": "رجل أنيق يقترب منك في موقف السيارات بعد التدريب: «مباراتك القادمة مهمّة لنا. لا نطلب الكثير: قرار أو قراران لصالح أصحاب الأرض. عشرون ألفاً نقداً، ولن يعرف أحد».",
+      "choices": [
+        { "text": "أرفض بحزم وأغادر",
+          "result": "رفضت. ابتسم الرجل وقال وهو يبتعد: «سنرى».",
+          "effects": { "fairness": 4, "setFlags": ["fixing_seen", "fixing_refused"], "next": { "event": "fixer_return", "inWeeks": 4 } } },
+        { "text": "أرفض وأبلّغ وحدة النزاهة في الاتحاد فوراً",
+          "result": "سجّلت وحدة النزاهة إفادتك وطلبت لقاءك قريباً. القرار الصحيح ليس دائماً القرار المريح.",
+          "effects": { "fairness": 6, "trust": 6, "mental": -4, "setFlags": ["fixing_seen", "whistle_reported"], "next": { "event": "integrity_meeting", "inWeeks": 1 } } },
+        { "text": "أقبل العرض",
+          "result": "أخذ الرجل رقم هاتفك. «المال بعد المباراة. نحن نراقب». المباراة القادمة لن تكون مثل غيرها.",
+          "effects": { "fairness": -5, "suspicion": 10, "fix": "home", "fixReward": 20000, "setFlags": ["fixing_seen", "fix_accepted"] } }
+      ] },
+
+    { "id": "integrity_meeting", "title": "اجتماع مع وحدة النزاهة", "chainOnly": true,
+      "text": "محقّقو الاتحاد يطلبون تعاونك: أن تتظاهر بالقبول وتسجّل لقاءك القادم مع الوسيط، ليُقبض على الشبكة كاملة.",
+      "choices": [
+        { "text": "أتعاون وأحمل جهاز التسجيل", "requires": { "minStats": { "personality": 50 } },
+          "result": "زوّدوك بجهاز صغير ورقم طوارئ. أسابيع صعبة تنتظرك.",
+          "effects": { "trust": 5, "mental": -10, "setFlags": ["undercover"], "next": { "event": "fixer_sting", "inWeeks": 3 } } },
+        { "text": "أكتفي بالإفادة المكتوبة",
+          "result": "احترموا قرارك. الملف سيأخذ وقتاً أطول.",
+          "effects": { "trust": 2, "next": { "event": "fixer_return", "inWeeks": 5 } } }
+      ] },
+
+    { "id": "fixer_sting", "title": "ليلة الكمين", "chainOnly": true,
+      "text": "مقهى هادئ على أطراف المدينة. الوسيط يجلس أمامك ويضع ظرفاً على الطاولة. قلبك يدقّ بقوة والجهاز في جيبك.",
+      "choices": [
+        { "text": "ألتزم بالخطة بهدوء", "requires": { "minStats": { "mental": 35 } },
+          "result": "خلال دقائق دخل المحقّقون. سقطت شبكة كاملة كانت تتلاعب بمباريات الدرجتين الأولى والثانية.",
+          "effects": { "trust": 12, "media": 15, "fairness": 6, "mental": -6, "setFlags": ["whistleblower"], "next": { "event": "whistleblower_honour", "inWeeks": 2 } } },
+        { "text": "أنسحب في اللحظة الأخيرة",
+          "result": "تذرّعت بمكالمة طارئة وغادرت. المحقّقون خاب أملهم، لكنك بأمان.",
+          "effects": { "trust": -3, "mental": 3 } }
+      ] },
+
+    { "id": "whistleblower_honour", "title": "تكريم", "chainOnly": true,
+      "text": "رئيس الاتحاد يريد تكريمك في مؤتمر صحفي لأنك ساعدت في إسقاط شبكة التلاعب.",
+      "choices": [
+        { "text": "أقبل التكريم بتواضع", "result": "صورتك في كل الصحف: «الحكم الذي قال لا».",
+          "effects": { "media": 6, "trust": 4, "personality": 2 } },
+        { "text": "أطلب عدم إبراز اسمي حمايةً لعائلتي", "result": "الاتحاد احترم طلبك. من يجب أن يعرف، يعرف.",
+          "effects": { "mental": 6, "trust": 2 } }
+      ] },
+
+    { "id": "fixer_return", "title": "رسالة مجهولة", "chainOnly": true,
+      "text": "رسالة على هاتفك من رقم مجهول: «نعرف أين تسكن. فكّر مرة أخرى في عرضنا».",
+      "choices": [
+        { "text": "أبلّغ الشرطة ووحدة النزاهة", "result": "فُتح محضر رسمي. الخوف لا يختفي، لكنك لست وحدك.",
+          "effects": { "trust": 4, "mental": -4, "fairness": 2, "setFlags": ["threat_reported"] } },
+        { "text": "أتجاهل الرسالة", "result": "حذفت الرسالة. لكن النوم لم يعد سهلاً.",
+          "effects": { "mental": -10 } },
+        { "text": "أرضخ وأقبل هذه المرة", "result": "ردّوا خلال ثوانٍ: «قرار حكيم». المباراة القادمة لهم.",
+          "effects": { "fairness": -6, "suspicion": 10, "fix": "random", "fixReward": 15000, "setFlags": ["fix_accepted"] } }
+      ] },
+
+    { "id": "fixer_angry", "title": "الوسيط غاضب", "chainOnly": true,
+      "text": "لم تنفّذ الاتفاق في الملعب. الوسيط يتصل غاضباً ويهدّد بفضح لقائكما إن لم تُعِد العربون.",
+      "choices": [
+        { "text": "أعترف للاتحاد بكل شيء", "result": "أوقفك الاتحاد ستة أسابيع، لكنه قدّر أنك لم تتلاعب فعلاً وساعدت في التحقيق.",
+          "effects": { "suspendWeeks": 6, "trust": -15, "fairness": 5, "clearFlags": ["fix_accepted"] } },
+        { "text": "أدفع له ليصمت", "requires": { "minMoney": 5000 }, "result": "دفعت. الصمت له ثمن، والقلق لا يغادر.",
+          "effects": { "money": -5000, "mental": -8 } },
+        { "text": "أتجاهله", "result": "أغلقت الهاتف. بعد أيام بدأت تسريبات غامضة تتحدث عن «حكم مشبوه».",
+          "effects": { "mental": -12, "media": -6, "suspicion": 15 } }
+      ] },
+
+    { "id": "integrity_exposed", "title": "انكشاف", "chainOnly": true, "once": false,
+      "text": "وحدة النزاهة تواجهك بتسجيلات وتحويلات مالية. القضية في طريقها إلى الإعلام.",
+      "choices": [
+        { "text": "أعترف وأتعاون مع التحقيق", "result": "روَيت كل شيء.", "effects": { "setFlags": ["exposed"], "ending": "confessed" } },
+        { "text": "أنكر كل شيء", "result": "الأدلة كانت أقوى من إنكارك.", "effects": { "setFlags": ["exposed"], "ending": "banned" } }
+      ] },
+
+    { "id": "club_president_call", "title": "اتصال من رئيس نادٍ", "chance": 0.06,
+      "requires": { "minTier": 1 },
+      "text": "رئيس نادٍ معروف يتصل «للتعارف» ويذكّرك بأن قريبه يعمل في لجنة الحكام، ثم يسأل عن جدول مبارياتك.",
+      "choices": [
+        { "text": "أُنهي المكالمة بأدب وأبلّغ لجنة الحكام", "result": "شكرتك اللجنة ووثّقت المكالمة.",
+          "effects": { "trust": 3, "fairness": 2 } },
+        { "text": "أجامله بكلام عام", "result": "مكالمة ودّية… لكنها سُجّلت في مكان ما.",
+          "effects": { "fairness": -2, "suspicion": 3 } },
+        { "text": "أوبّخه بحدّة", "result": "أغلق الخط غاضباً. لن يحبّك، لكنه لن يتصل ثانية.",
+          "effects": { "personality": 2, "media": -1 } }
+      ] },
+
+    { "id": "luxury_gift", "title": "هدية فاخرة", "chance": 0.05,
+      "requires": { "minTier": 2 },
+      "text": "وصلتك علبة فيها ساعة فاخرة «تقديراً لجهودك» باسم نادٍ ستحكم إحدى مبارياته قريباً.",
+      "choices": [
+        { "text": "أعيدها وأبلّغ اللجنة", "result": "أُعيدت الهدية رسمياً، ووُجّه إنذار للنادي.",
+          "effects": { "fairness": 4, "trust": 3 } },
+        { "text": "أحتفظ بها", "result": "الساعة جميلة. ثقيلة على المعصم، وأثقل على الضمير.",
+          "effects": { "money": 3000, "fairness": -6, "suspicion": 12 } }
+      ] },
+
+    { "id": "social_abuse", "title": "حملة إساءة على مواقع التواصل", "chance": 0.08,
+      "requires": { "minTier": 1 },
+      "text": "بعد قرار الأسبوع الماضي، آلاف الرسائل المسيئة تصلك، وبعضها يطال عائلتك.",
+      "choices": [
+        { "text": "أغلق حساباتي وأركّز على عملي", "result": "الصمت أحياناً أقوى ردّ.",
+          "effects": { "mental": -3, "media": -1 } },
+        { "text": "أردّ على المسيئين", "result": "تحوّل ردّك إلى عنوان رئيسي. الاتحاد غير راضٍ.",
+          "effects": { "media": -6, "personality": -3, "trust": -3 } },
+        { "text": "أطلب دعم الاتحاد وأخصائي نفسي", "result": "أصدر الاتحاد بياناً يدعمك ويهدّد بملاحقة المسيئين.",
+          "effects": { "mental": 4, "trust": 1, "money": -200 } }
+      ] },
+
+    { "id": "tv_invite", "title": "دعوة تلفزيونية", "chance": 0.05,
+      "requires": { "minTier": 2 },
+      "text": "برنامج رياضي شهير يدعوك للحديث عن قرارات التحكيم الأخيرة في الدوري.",
+      "choices": [
+        { "text": "أعتذر؛ لوائح الاتحاد تمنع ذلك", "result": "التزامك باللوائح سُجّل لصالحك.",
+          "effects": { "trust": 3 } },
+        { "text": "أطلب إذن الاتحاد أولاً", "requires": { "minStats": { "trust": 60 } },
+          "result": "وافق الاتحاد بشرط ألا تتحدث عن مباريات بعينها. ظهورك كان متوازناً.",
+          "effects": { "media": 5, "trust": 1 } },
+        { "text": "أظهر دون إذن", "result": "حلقة مشاهدة جداً… واستدعاء للتحقيق في اليوم التالي.",
+          "effects": { "media": 8, "trust": -8 } }
+      ] },
+
+    { "id": "colleague_cover", "title": "زميل يطلب التستّر", "chance": 0.05,
+      "requires": { "minTier": 1 },
+      "text": "حكم مساعد عمل معك أخطأ خطأً فادحاً، ويطلب منك أن تكتب في التقرير أن الخطأ خطؤك أنت.",
+      "choices": [
+        { "text": "أكتب التقرير بأمانة", "result": "التقرير دقيق. زميلك لن يكلّمك لفترة.",
+          "effects": { "fairness": 3, "trust": 2, "mental": -2 } },
+        { "text": "أتحمّل الخطأ عنه", "result": "تحمّلت الخطأ. المراقب خفّض تقييمك.",
+          "effects": { "trust": -4, "personality": 1, "setFlags": ["loyal_friend"] } }
+      ] },
+
+    { "id": "family_wedding", "title": "زفاف أخيك", "chance": 0.04,
+      "text": "زفاف أخيك يصادف موعد مباراتك القادمة.",
+      "choices": [
+        { "text": "أعتذر عن المباراة وأحضر الزفاف", "result": "رقصت حتى الفجر. العائلة أولاً.",
+          "effects": { "restWeeks": 1, "mental": 12, "trust": -1 } },
+        { "text": "ألتزم بالمباراة", "result": "شاهدت صور الزفاف على هاتفك في غرفة الحكام.",
+          "effects": { "mental": -8, "trust": 1 } }
+      ] },
+
+    { "id": "newborn", "title": "مولود جديد", "chance": 0.03,
+      "requires": { "minSeason": 3 },
+      "text": "رُزقت بطفلك الأول!",
+      "choices": [
+        { "text": "آخذ أسبوعين إجازة", "result": "أجمل أسبوعين في حياتك.", "effects": { "restWeeks": 2, "mental": 20 } },
+        { "text": "أواصل العمل", "result": "نومٌ قليل وحماسٌ كثير.", "effects": { "mental": -5, "trust": 2 } }
+      ] },
+
+    { "id": "injury_niggle", "title": "شدّ في العضلة الخلفية", "chance": 0.05, "once": false,
+      "text": "تشعر بشدّ في العضلة الخلفية بعد التدريب.",
+      "choices": [
+        { "text": "أرتاح أسبوعاً", "result": "قرار حكيم؛ العضلة تعافت.", "effects": { "injuryWeeks": 1, "mental": 2 } },
+        { "text": "أكمل بمسكّنات", "result": "تحاملت على الألم. لياقتك تراجعت.", "effects": { "fitness": -4, "mental": -2 } }
+      ] },
+
+    { "id": "foreign_friendly", "title": "مباراة ودية دولية", "chance": 0.05,
+      "requires": { "minTier": 3 },
+      "text": "الاتحاد يرشّحك لإدارة مباراة ودية في الخارج كاختبار قبل منح الشارة الدولية.",
+      "choices": [
+        { "text": "أقبل", "result": "أدرت المباراة بثقة. المراقب الدولي كتب تقريراً إيجابياً.",
+          "effects": { "trust": 5, "laws": 1, "mental": -2, "roleSkill": 3 } },
+        { "text": "أعتذر لظروف خاصة", "result": "سيُرشَّح غيرك.", "effects": { "trust": -2 } }
+      ] },
+
+    { "id": "pundit_offer", "title": "عرض محلّل تحكيمي", "chance": 0.03,
+      "requires": { "minTier": 3, "minSeason": 6 },
+      "text": "قناة كبرى تعرض عليك راتباً ضخماً لتصبح محلّلها التحكيمي الأول. القبول يعني الاعتزال الآن.",
+      "choices": [
+        { "text": "أعتزل وأقبل العرض", "result": "وقّعت العقد.", "effects": { "ending": "pundit" } },
+        { "text": "أرفض؛ طموحي كأس العالم", "result": "أخبرت المدير أن الصافرة لم تقل كلمتها الأخيرة بعد.",
+          "effects": { "trust": 2, "personality": 2 } }
+      ] },
+
+    { "id": "var_pressure", "title": "تلميح في غرفة الفيديو", "chance": 0.05,
+      "requires": { "minTier": 3, "flagsAll": ["var_certified"] },
+      "text": "مسؤول في الاتحاد يلمّح لك بأن «بعض الأندية الكبيرة لا تحب التدخّلات الكثيرة من غرفة الفيديو».",
+      "choices": [
+        { "text": "أطبّق البروتوكول فقط", "result": "البروتوكول واضح: الخطأ الواضح والجليّ فقط.",
+          "effects": { "fairness": 3, "trust": 1 } },
+        { "text": "أبلّغ لجنة الحكام", "result": "استُبعد المسؤول من ملف التحكيم.",
+          "effects": { "fairness": 2, "trust": 3, "mental": -3 } },
+        { "text": "أعِده بالمرونة", "result": "ابتسم وربّت على كتفك.",
+          "effects": { "fairness": -4, "suspicion": 6 } }
+      ] },
+
+    { "id": "assessor_feedback", "title": "جلسة مع المراقب", "chance": 0.06, "once": false,
+      "text": "مراقب الحكام يعرض عليك جلسة لمراجعة لقطات مبارياتك الأخيرة بالتفصيل.",
+      "choices": [
+        { "text": "أقبل وأستمع للنقد", "result": "خرجت بثلاث ملاحظات ستغيّر تمركزك.",
+          "effects": { "laws": 3, "trust": 2, "personality": 1, "roleSkill": 2 } },
+        { "text": "أعتذر لضيق الوقت", "result": "المراقب لم يعلّق.", "effects": { "trust": -1 } }
+      ] },
+
+    { "id": "referee_strike", "title": "دعوة للإضراب", "chance": 0.03,
+      "requires": { "minTier": 1 },
+      "text": "زملاؤك يدعون للإضراب احتجاجاً على الإساءات المتكررة وتأخّر المستحقات.",
+      "choices": [
+        { "text": "أنضمّ للإضراب", "result": "توقّفت المباريات أسبوعاً. الاتحاد وعد بإجراءات.",
+          "effects": { "restWeeks": 1, "personality": 2, "trust": -4, "mental": 3 } },
+        { "text": "أحكم مباراتي", "result": "بعض زملائك لن ينسوا ذلك.",
+          "effects": { "trust": 3, "personality": -1, "mental": -3 } }
+      ] },
+
+    { "id": "fan_confrontation", "title": "مشجعون عند الفندق", "chance": 0.04,
+      "requires": { "minTier": 2 },
+      "text": "مجموعة من المشجعين الغاضبين تنتظرك عند مدخل الفندق قبل المباراة.",
+      "choices": [
+        { "text": "أطلب حماية الأمن وأتجنّبهم", "result": "دخلت من الباب الخلفي.", "effects": { "mental": -2 } },
+        { "text": "أتحدّث معهم بهدوء", "requires": { "minStats": { "personality": 60 } },
+          "result": "هدأت النفوس، وانتشر مقطع الحوار بإعجاب.", "effects": { "media": 4, "personality": 2, "mental": -4 } }
+      ] },
+
+    { "id": "law_change", "title": "تعديلات في قانون اللعبة", "chance": 0.04, "once": false,
+      "text": "مجلس IFAB أصدر تعديلات جديدة على تفسير لمسة اليد والتسلل.",
+      "choices": [
+        { "text": "أدرس التعديلات بعمق", "result": "أصبحت مرجعاً لزملائك في التعديلات الجديدة.", "effects": { "laws": 5, "mental": -2 } },
+        { "text": "أكتفي بالملخّص", "result": "قرأت الأهم.", "effects": { "laws": 1 } }
+      ] },
+
+    { "id": "young_ref", "title": "حكم شاب يطلب الإرشاد", "chance": 0.03,
+      "requires": { "minTier": 4 },
+      "text": "حكم شاب من دوري الأحياء كتب لك: «أنت سبب دخولي التحكيم. هل تساعدني؟»",
+      "choices": [
+        { "text": "أخصّص له وقتاً كل أسبوع", "result": "ترى فيه نفسك قبل عشرين عاماً.", "effects": { "personality": 3, "media": 2, "mental": -1 } },
+        { "text": "أعتذر بلطف", "result": "أرسلت له نصائح مكتوبة.", "effects": {} }
+      ] }
+  ]
+}
