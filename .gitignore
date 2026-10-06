@@ -21,3 +21,7 @@ RefereeCareer/Tests/Core/build/
 # Blender / Python
 *.blend1
 __pycache__/
+
+# Web build outputs (regenerate with web/tools/build_core.sh)
+web/build/
+web/js/refcore.js
