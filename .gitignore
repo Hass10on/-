@@ -1,0 +1,23 @@
+# Unreal Engine
+RefereeCareer/Binaries/
+RefereeCareer/Intermediate/
+RefereeCareer/Saved/
+RefereeCareer/DerivedDataCache/
+RefereeCareer/Build/
+RefereeCareer/Platforms/
+RefereeCareer/*.sln
+RefereeCareer/.vs/
+RefereeCareer/.vscode/
+RefereeCareer/.idea/
+*.VC.db
+*.opensdf
+*.sdf
+*.suo
+
+# Local builds of the core tests
+build/
+RefereeCareer/Tests/Core/build/
+
+# Blender / Python
+*.blend1
+__pycache__/

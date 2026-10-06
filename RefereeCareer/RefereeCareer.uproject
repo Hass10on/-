@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.6",
+	"Category": "",
+	"Description": "Referee Career - مسيرة حكم",
+	"Modules": [
+		{
+			"Name": "RefereeCareer",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"EnhancedInput",
+				"DeveloperSettings"
+			]
+		}
+	],
+	"Plugins": [
+		{ "Name": "EnhancedInput", "Enabled": true },
+		{ "Name": "PythonScriptPlugin", "Enabled": true },
+		{ "Name": "EditorScriptingUtilities", "Enabled": true },
+		{ "Name": "ModelingToolsEditorMode", "Enabled": true, "TargetAllowList": [ "Editor" ] },
+		{ "Name": "PoseSearch", "Enabled": true },
+		{ "Name": "MotionWarping", "Enabled": true },
+		{ "Name": "Chooser", "Enabled": true },
+		{ "Name": "AnimationWarping", "Enabled": true },
+		{ "Name": "AnimationLocomotionLibrary", "Enabled": true }
+	],
+	"TargetPlatforms": [ "Windows" ]
+}

@@ -1,0 +1,233 @@
+{
+  "startAge": 22,
+  "retireAge": 45,
+  "weeksPerSeason": 8,
+  "slotsPerWeek": 3,
+  "startStats": { "fairness": 60, "personality": 45, "trust": 40, "fitness": 50, "laws": 35, "media": 50, "mental": 70 },
+
+  "appointment": {
+    "weights": { "trust": 0.35, "fairness": 0.25, "personality": 0.20, "media": 0.05, "mark": 0.15 },
+    "thresholds": [0, 40, 52, 63, 74],
+    "cooldownWeeks": 2,
+    "bigMatchMinFairness": 60,
+    "bigMatchMinPersonality": 55,
+    "rotationChance": 0.2
+  },
+
+  "tiers": [
+    {
+      "id": "neighbourhood", "name": "دوري الأحياء", "competition": "بطولة أحياء المدينة",
+      "venue": "community", "playersPerSide": 7, "pitch": [64, 42], "crowd": 0.05, "fee": 150,
+      "roles": ["center", "assistant"], "var": false,
+      "promote": { "minMatches": 4, "minAvgMark": 7.9, "minTrust": 42, "minFitness": 45 },
+      "demoteBelowTrust": 15, "fitnessTest": 35, "aiAccuracy": 0.7, "difficulty": 1,
+      "incidentsPerMatch": 6, "baseHeat": 18,
+      "teams": [
+        { "name": "شباب الحارة", "short": "الحارة", "kit": ["#c0392b", "#ffffff"] },
+        { "name": "نجوم الحي الشرقي", "short": "الشرقي", "kit": ["#1f6fb2", "#ffffff"] },
+        { "name": "أبطال الساحة", "short": "الساحة", "kit": ["#f1c40f", "#1b1b1b"] },
+        { "name": "فتيان النخيل", "short": "النخيل", "kit": ["#1e8449", "#ffffff"] },
+        { "name": "اتحاد السوق القديم", "short": "السوق", "kit": ["#6c3483", "#f4f4f4"] },
+        { "name": "صقور الوادي", "short": "الوادي", "kit": ["#e67e22", "#2c2c2c"] },
+        { "name": "رواد المدرسة", "short": "المدرسة", "kit": ["#ecf0f1", "#1a5276"] },
+        { "name": "شعلة الميناء", "short": "الميناء", "kit": ["#17202a", "#e74c3c"] }
+      ],
+      "bigMatches": [
+        { "name": "ديربي الحارات", "importance": 3, "week": 5, "derby": true, "teams": [0, 1] },
+        { "name": "نهائي كأس الأحياء", "importance": 4, "week": 8 }
+      ]
+    },
+    {
+      "id": "second_division", "name": "دوري الدرجة الثانية", "competition": "دوري الدرجة الثانية",
+      "venue": "stadium_small", "playersPerSide": 11, "pitch": [100, 64], "crowd": 0.2, "fee": 400,
+      "roles": ["center", "assistant"], "var": false,
+      "promote": { "minMatches": 5, "minAvgMark": 7.95, "minTrust": 50, "minFairness": 55, "minFitness": 52 },
+      "demoteBelowMark": 7.4, "demoteBelowTrust": 25, "fitnessTest": 45, "aiAccuracy": 0.75, "difficulty": 2,
+      "incidentsPerMatch": 7, "baseHeat": 22,
+      "teams": [
+        { "name": "نادي الواحة", "short": "الواحة", "kit": ["#27ae60", "#ffffff"] },
+        { "name": "نادي السهل الأخضر", "short": "السهل", "kit": ["#145a32", "#f7dc6f"] },
+        { "name": "نادي برج الساحل", "short": "البرج", "kit": ["#2e86c1", "#ffffff"] },
+        { "name": "نادي المنارة", "short": "المنارة", "kit": ["#ffffff", "#c0392b"] },
+        { "name": "نادي القلعة الحمراء", "short": "القلعة", "kit": ["#922b21", "#f4d03f"] },
+        { "name": "نادي الفرسان الجدد", "short": "الفرسان", "kit": ["#1c2833", "#f0b27a"] },
+        { "name": "نادي الرمال الذهبية", "short": "الرمال", "kit": ["#d4ac0d", "#145a32"] },
+        { "name": "نادي عين الماء", "short": "العين", "kit": ["#5dade2", "#1b2631"] }
+      ],
+      "bigMatches": [
+        { "name": "ديربي الساحل", "importance": 4, "week": 4, "derby": true, "teams": [2, 3] },
+        { "name": "مباراة الصعود الحاسمة", "importance": 4, "week": 8 }
+      ]
+    },
+    {
+      "id": "first_division", "name": "دوري الدرجة الأولى", "competition": "دوري الدرجة الأولى",
+      "venue": "stadium_small", "playersPerSide": 11, "pitch": [105, 68], "crowd": 0.4, "fee": 900,
+      "roles": ["center", "assistant"], "var": false,
+      "promote": { "minSeasons": 2, "minMatches": 5, "minAvgMark": 8.1, "minTrust": 58, "minFairness": 60, "minPersonality": 50, "minFitness": 58 },
+      "demoteBelowMark": 7.5, "demoteBelowTrust": 32, "fitnessTest": 52, "aiAccuracy": 0.8, "difficulty": 2,
+      "incidentsPerMatch": 7, "baseHeat": 25,
+      "teams": [
+        { "name": "نادي الجزيرة الخضراء", "short": "الجزيرة", "kit": ["#1d8348", "#ffffff"] },
+        { "name": "نادي النهرين", "short": "النهرين", "kit": ["#2874a6", "#f8c471"] },
+        { "name": "نادي الهضبة", "short": "الهضبة", "kit": ["#784212", "#fdfefe"] },
+        { "name": "نادي البحارة", "short": "البحارة", "kit": ["#1b4f72", "#ffffff"] },
+        { "name": "نادي الشروق", "short": "الشروق", "kit": ["#f39c12", "#212f3d"] },
+        { "name": "نادي الأرز", "short": "الأرز", "kit": ["#0b5345", "#e74c3c"] },
+        { "name": "نادي الكواكب", "short": "الكواكب", "kit": ["#4a235a", "#f9e79f"] },
+        { "name": "نادي الصخرة", "short": "الصخرة", "kit": ["#7b7d7d", "#c0392b"] }
+      ],
+      "bigMatches": [
+        { "name": "ديربي النهرين", "importance": 4, "week": 4, "derby": true, "teams": [1, 3] },
+        { "name": "نصف نهائي الكأس", "importance": 4, "week": 6 },
+        { "name": "قمة الصدارة", "importance": 4, "chance": 0.15 }
+      ]
+    },
+    {
+      "id": "premier", "name": "الدوري الممتاز", "competition": "الدوري الممتاز",
+      "venue": "stadium", "playersPerSide": 11, "pitch": [105, 68], "crowd": 0.75, "fee": 2500,
+      "roles": ["center", "assistant"], "var": true,
+      "promote": { "minSeasons": 2, "minMatches": 6, "minAvgMark": 8.45, "minTrust": 66, "minFairness": 66, "minPersonality": 60, "minFitness": 64 },
+      "demoteBelowMark": 7.6, "demoteBelowTrust": 40, "fitnessTest": 60, "aiAccuracy": 0.82, "difficulty": 3,
+      "incidentsPerMatch": 8, "baseHeat": 28,
+      "teams": [
+        { "name": "نسور العاصمة", "short": "النسور", "kit": ["#b03a2e", "#ffffff"] },
+        { "name": "قلعة العاصمة", "short": "القلعة", "kit": ["#1a5276", "#ffffff"] },
+        { "name": "رياح الشمال", "short": "الشمال", "kit": ["#ecf0f1", "#154360"] },
+        { "name": "نجم الجنوب", "short": "النجم", "kit": ["#f1c40f", "#1c2833"] },
+        { "name": "سفن الميناء", "short": "الميناء", "kit": ["#117a65", "#ffffff"] },
+        { "name": "أسود الجبل", "short": "الأسود", "kit": ["#212121", "#f5b041"] },
+        { "name": "شهب الصحراء", "short": "الشهب", "kit": ["#ca6f1e", "#fdfefe"] },
+        { "name": "موج الخليج", "short": "الموج", "kit": ["#2e86c1", "#f4d03f"] }
+      ],
+      "bigMatches": [
+        { "name": "ديربي العاصمة", "importance": 5, "week": 4, "derby": true, "teams": [0, 1] },
+        { "name": "قمة الصدارة", "importance": 4, "chance": 0.2 },
+        { "name": "نهائي كأس البلاد", "importance": 5, "week": 8, "minScore": 70, "minForm": 8.4, "flag": "cup_final_done" }
+      ]
+    },
+    {
+      "id": "continental_clubs", "name": "الشارة الدولية: دوري أبطال القارة", "competition": "دوري أبطال القارة",
+      "venue": "stadium", "playersPerSide": 11, "pitch": [105, 68], "crowd": 0.85, "fee": 5000,
+      "roles": ["center", "assistant"], "var": true,
+      "promote": { "minSeasons": 2, "minMatches": 6, "minAvgMark": 8.5, "minTrust": 72, "minFairness": 72, "minPersonality": 66, "minFitness": 68 },
+      "demoteBelowMark": 7.7, "demoteBelowTrust": 48, "fitnessTest": 66, "aiAccuracy": 0.85, "difficulty": 4,
+      "incidentsPerMatch": 8, "baseHeat": 30,
+      "teams": [
+        { "name": "سبورتينغ الأطلسي", "short": "الأطلسي", "kit": ["#1e8449", "#ffffff"] },
+        { "name": "دينامو السهوب", "short": "السهوب", "kit": ["#2471a3", "#ffffff"] },
+        { "name": "أولمبيك الريفييرا", "short": "الريفييرا", "kit": ["#5dade2", "#ffffff"] },
+        { "name": "يونايتد الضباب", "short": "الضباب", "kit": ["#c0392b", "#17202a"] },
+        { "name": "أتلتيك الهضبة العليا", "short": "الهضبة", "kit": ["#e74c3c", "#ffffff"] },
+        { "name": "كوميت الشرق", "short": "الكوميت", "kit": ["#f4d03f", "#1a5276"] },
+        { "name": "فالكونز الصحراء", "short": "الفالكونز", "kit": ["#212f3d", "#f5cba7"] },
+        { "name": "روفرز الموانئ", "short": "الروفرز", "kit": ["#7d3c98", "#f7f9f9"] }
+      ],
+      "bigMatches": [
+        { "name": "ربع نهائي دوري الأبطال", "importance": 4, "week": 5 },
+        { "name": "نصف نهائي دوري الأبطال", "importance": 4, "week": 7 },
+        { "name": "نهائي دوري أبطال القارة", "importance": 5, "week": 8, "minScore": 78, "minForm": 8.5, "flag": "continental_final_done" }
+      ]
+    },
+    {
+      "id": "nations_cup", "name": "كأس الأمم القارية", "competition": "كأس الأمم القارية",
+      "venue": "stadium", "playersPerSide": 11, "pitch": [105, 68], "crowd": 0.9, "fee": 7000,
+      "roles": ["center", "assistant"], "var": true, "national": true,
+      "promote": { "minSeasons": 2, "minMatches": 5, "minAvgMark": 8.55, "minTrust": 78, "minFairness": 76, "minPersonality": 70, "minFitness": 72 },
+      "demoteBelowMark": 7.8, "demoteBelowTrust": 55, "fitnessTest": 70, "aiAccuracy": 0.87, "difficulty": 5,
+      "incidentsPerMatch": 8, "baseHeat": 32,
+      "teams": [
+        { "name": "المغرب", "short": "المغرب", "kit": ["#c1272d", "#006233"] },
+        { "name": "مصر", "short": "مصر", "kit": ["#ce1126", "#ffffff"] },
+        { "name": "السعودية", "short": "السعودية", "kit": ["#ffffff", "#006c35"] },
+        { "name": "الجزائر", "short": "الجزائر", "kit": ["#ffffff", "#006233"] },
+        { "name": "تونس", "short": "تونس", "kit": ["#e70013", "#ffffff"] },
+        { "name": "العراق", "short": "العراق", "kit": ["#ffffff", "#007a3d"] },
+        { "name": "الأردن", "short": "الأردن", "kit": ["#ffffff", "#ce1126"] },
+        { "name": "قطر", "short": "قطر", "kit": ["#8a1538", "#ffffff"] }
+      ],
+      "bigMatches": [
+        { "name": "نصف نهائي كأس الأمم", "importance": 4, "week": 7 },
+        { "name": "نهائي كأس الأمم", "importance": 5, "week": 8, "minScore": 80, "minForm": 8.5, "flag": "nations_final_done" }
+      ]
+    },
+    {
+      "id": "world_cup", "name": "كأس العالم", "competition": "كأس العالم",
+      "venue": "stadium", "playersPerSide": 11, "pitch": [105, 68], "crowd": 1.0, "fee": 12000,
+      "roles": ["center", "assistant"], "var": true, "national": true, "maxSeasons": 2,
+      "demoteBelowMark": 7.9, "demoteBelowTrust": 60, "fitnessTest": 74, "aiAccuracy": 0.9, "difficulty": 5,
+      "incidentsPerMatch": 8, "baseHeat": 34,
+      "teams": [
+        { "name": "البرازيل", "short": "البرازيل", "kit": ["#f7d117", "#1d4e9e"] },
+        { "name": "الأرجنتين", "short": "الأرجنتين", "kit": ["#74acdf", "#ffffff"] },
+        { "name": "فرنسا", "short": "فرنسا", "kit": ["#1e2a78", "#ffffff"] },
+        { "name": "ألمانيا", "short": "ألمانيا", "kit": ["#ffffff", "#111111"] },
+        { "name": "إسبانيا", "short": "إسبانيا", "kit": ["#c60b1e", "#ffc400"] },
+        { "name": "البرتغال", "short": "البرتغال", "kit": ["#8b0d1c", "#0b6623"] },
+        { "name": "المغرب", "short": "المغرب", "kit": ["#c1272d", "#006233"] },
+        { "name": "اليابان", "short": "اليابان", "kit": ["#0b2c7a", "#ffffff"] },
+        { "name": "المكسيك", "short": "المكسيك", "kit": ["#006847", "#ffffff"] },
+        { "name": "إنجلترا", "short": "إنجلترا", "kit": ["#ffffff", "#0b1c49"] }
+      ],
+      "bigMatches": [
+        { "name": "ربع نهائي كأس العالم", "importance": 4, "week": 6 },
+        { "name": "نصف نهائي كأس العالم", "importance": 4, "week": 7, "minScore": 76 },
+        { "name": "نهائي كأس العالم", "importance": 5, "week": 8, "minScore": 85, "minForm": 8.6, "flag": "wc_final_done" }
+      ]
+    }
+  ],
+
+  "activities": [
+    { "id": "fitness", "name": "تدريب لياقة هوائية", "desc": "جري متواصل وتمارين تحمّل. يرفع اللياقة بأمان.",
+      "effects": { "fitness": 4, "mental": -1 }, "injuryRisk": 0.02 },
+    { "id": "intervals", "name": "تدريب السرعات المتقطعة", "desc": "اختبار FIFA للسرعات المتكررة. مكسب كبير ومخاطرة إصابة أعلى.",
+      "effects": { "fitness": 6, "mental": -3 }, "injuryRisk": 0.06 },
+    { "id": "gym", "name": "تقوية عضلية ووقاية", "desc": "تمارين قوة وتوازن تقلل الإصابات وتحافظ على اللياقة.",
+      "effects": { "fitness": 2, "mental": 1 } },
+    { "id": "laws", "name": "دراسة قانون اللعبة", "desc": "مراجعة القوانين الـ17 وتعليمات الاتحاد الدولي (IFAB).",
+      "effects": { "laws": 4 }, "whileInjured": true },
+    { "id": "video", "name": "تحليل فيديو لمبارياتك", "desc": "مراجعة تمركزك وقراراتك لقطة بلقطة.",
+      "effects": { "laws": 2, "trust": 1, "roleSkill": 3 }, "whileInjured": true },
+    { "id": "seminar", "name": "ندوة حكام الاتحاد", "desc": "حضور معسكر الحكام وورش التوحيد. الاتحاد يلاحظ من يحضر.",
+      "effects": { "trust": 2, "laws": 1 }, "whileInjured": true },
+    { "id": "var_course", "name": "دورة حكام الفيديو (VAR)", "desc": "ثلاث جلسات تؤهلك للعمل في غرفة الفيديو بدءاً من الدوري الممتاز.",
+      "effects": { "laws": 1 }, "cost": 300, "requires": { "minTier": 2 },
+      "progress": { "key": "var_course", "needed": 3, "flag": "var_certified" }, "whileInjured": true },
+    { "id": "mentor", "name": "جلسة مع حكم دولي متقاعد", "desc": "موجّه خبير يعلّمك الحضور والهيبة وإدارة اللاعبين.",
+      "effects": { "personality": 3, "fairness": 1, "laws": 1 }, "cost": 500, "requires": { "minTier": 1 }, "whileInjured": true },
+    { "id": "media_training", "name": "تدريب إعلامي", "desc": "كيف تتحدث بعد مباراة صعبة دون أن تخسر احترام أحد.",
+      "effects": { "media": 3, "personality": 1 }, "cost": 250, "whileInjured": true },
+    { "id": "psych", "name": "جلسة مع أخصائي نفسي رياضي", "desc": "تمارين تنفّس وتركيز لإدارة الضغط والإساءات.",
+      "effects": { "mental": 10, "personality": 2 }, "cost": 400, "whileInjured": true },
+    { "id": "english", "name": "لغة إنجليزية للتحكيم الدولي", "desc": "التواصل مع اللاعبين والمساعدين في المباريات الدولية.",
+      "effects": { "trust": 2, "personality": 1 }, "requires": { "minTier": 3 }, "whileInjured": true },
+    { "id": "rest", "name": "راحة مع العائلة", "desc": "يوم بعيداً عن كرة القدم. الذهن الصافي يرى اللقطة أوضح.",
+      "effects": { "mental": 8, "fitness": -1 }, "whileInjured": true }
+  ],
+
+  "pressRules": {
+    "defend":     { "correct": { "media": 3, "trust": 2, "personality": 1 }, "wrong": { "media": -6, "trust": -3, "fairness": -2 }, "neutral": { "media": 1 } },
+    "admit":      { "correct": { "trust": -3, "media": -1, "personality": -1 }, "wrong": { "fairness": 3, "media": 2, "trust": -1 }, "neutral": { "media": 1 } },
+    "explain":    { "correct": { "media": 2, "laws": 1, "trust": 1 }, "wrong": { "media": -2, "trust": -1 }, "neutral": { "media": 1 } },
+    "no_comment": { "correct": { "media": -1 }, "wrong": { "media": -2 }, "neutral": {} },
+    "blame":      { "correct": { "trust": -4, "personality": -2, "media": -2 }, "wrong": { "trust": -5, "personality": -3, "media": 1 }, "neutral": { "trust": -2 } }
+  },
+
+  "endings": [
+    { "id": "legend", "title": "صافرة النهائي الكبير",
+      "text": "أطلق {name} صافرة نهاية نهائي كأس العالم. من ملاعب الأحياء الترابية إلى أكبر مسرح في كرة القدم، بقيت قراراته نظيفة وصوته هادئاً. المسيرة اكتملت." },
+    { "id": "retired_international", "title": "اعتزال حكم دولي",
+      "text": "بلغ {name} سن الاعتزال وهو يحمل الشارة الدولية. لم يصل إلى نهائي كأس العالم، لكن اسمه بقي مرادفاً للنزاهة في كل ملعب دخله." },
+    { "id": "retired", "title": "اعتزال",
+      "text": "بلغ {name} سن الاعتزال. مسيرة طويلة من صافرات الأمسيات والملاعب الصغيرة، وجيل من اللاعبين يتذكر حكماً لم يهتز." },
+    { "id": "banned", "title": "إيقاف مدى الحياة",
+      "text": "أثبتت وحدة النزاهة تلاعب {name} بنتائج المباريات. صدر قرار بإيقافه عن أي نشاط كروي مدى الحياة، وأُحيل ملفه إلى النيابة." },
+    { "id": "confessed", "title": "الاعتراف",
+      "text": "اعترف {name} بكل شيء وساعد المحققين على تفكيك شبكة التلاعب. أُوقف عن التحكيم، لكن شهادته أسقطت من أفسدوا اللعبة." },
+    { "id": "dismissed", "title": "سحب الرخصة",
+      "text": "فقد الاتحاد ثقته بـ{name} وسحب رخصة التحكيم. ربما تعود يوماً من بوابة أخرى." },
+    { "id": "burnout", "title": "استنزاف",
+      "text": "الضغط والإساءات استنزفا {name}. قرر الابتعاد عن الملاعب ليحمي صحته وعائلته. لا عيب في ذلك." },
+    { "id": "pundit", "title": "من الملعب إلى الاستوديو",
+      "text": "قبل {name} عرض القناة وأصبح المحلل التحكيمي الأشهر. الآن يحكم على قرارات غيره من خلف الشاشة." }
+  ]
+}
